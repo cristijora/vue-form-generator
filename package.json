@@ -9,7 +9,7 @@
     "build:core": "webpack --progress --config webpack.build.config.js --define process.env.FULL_BUNDLE=false --output-filename=vue-form-generator-core.js",
     "build:full": "webpack --progress --config webpack.build.config.js --define process.env.FULL_BUNDLE=true",
     "build": "npm run build:core && npm run build:full",
-    "dev": "webpack-dev-server --config webpack.dev.config.js --inline --hot --content-base dev/",
+    "dev": "webpack-dev-server --config webpack.dev.config.js --inline --hot --content-base dev/rewrite/",
     "lint": "eslint --ext=.js,.vue src test/unit/specs",
     "coverall": "cat ./test/unit/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "coverage": "npm run test && npm run coverall",
@@ -101,6 +101,7 @@
   },
   "dependencies": {
     "babel-runtime": "6.23.0",
-    "vue": "2.1.10"
+    "vue": "2.1.10",
+    "vue-router": "^2.2.1"
   }
 }

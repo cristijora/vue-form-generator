@@ -4,7 +4,7 @@
 		:type="schema.inputType", 
 		:value="value",
 		@input="value = $event.target.value",
-		number="schema.inputType == 'number'"
+		:number="schema.inputType == 'number'"
 		:disabled="disabled",
 		:accept="schema.accept",
 		:alt="schema.alt",
@@ -66,12 +66,12 @@
 						return new Date(value).getTime();
 					}
 				}
-				
+
 				return value;
 			}
 		}
 	};
-	
+
 </script>
 
 <style lang="sass">
