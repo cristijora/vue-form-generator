@@ -1,10 +1,9 @@
-<template lang="jade">
+<template lang="pug">
 .wrapper
 	input.form-control(
 		:type="schema.inputType", 
 		:value="value",
 		@input="value = $event.target.value",
-		:number="schema.inputType == 'number'"
 		:disabled="disabled",
 		:accept="schema.accept",
 		:alt="schema.alt",
@@ -43,9 +42,7 @@
 		mixins: [ abstractField ],
 		methods: {
 			formatValueToField(value) {
-				if (typeof value === "undefined") {
-					return value;
-				} else {
+				if (value != null) {
 					switch(this.schema.inputType){
 					case "date":
 						return fecha.format(value, "YYYY-MM-DD");
@@ -53,25 +50,30 @@
 						return fecha.format(value, "YYYY-MM-DD HH:mm:ss");
 					case "datetime-local":
 						return fecha.format(value, "YYYY-MM-DDTHH:mm:ss");
-					default:
-						return value;
 					}
 				}
+				
+				return value;
 			},
 			formatValueToModel(value) {
 				if (value != null) {
-					if (this.schema.inputType === "date" ||
-						this.schema.inputType === "datetime" ||
-						this.schema.inputType === "datetimelocal") {
-						return new Date(value).getTime();
+					switch (this.schema.inputType){
+					case "date":
+						return fecha.parse(value, "YYYY-MM-DD");
+					case "datetime":
+						return fecha.parse(value, "YYYY-MM-DD HH:mm:ss");
+					case "datetime-local":
+						return fecha.parse(value, "YYYY-MM-DDTHH:mm:ss");
+					case "number":
+						return Number(value);
 					}
 				}
-
+				
 				return value;
 			}
 		}
 	};
-
+	
 </script>
 
 <style lang="sass">
