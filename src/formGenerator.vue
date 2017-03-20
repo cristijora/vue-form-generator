@@ -10,6 +10,7 @@ div
 						.helpText(v-html='field.help')
 				.field-wrap
 					component(:is='getFieldType(field)', :disabled='fieldDisabled(field)', :model='model', :schema.sync='field', @model-updated='modelUpdated', @validated="onFieldValidated")
+						div(slot='firstName') test
 					.buttons(v-if='buttonVisibility(field)')
 						button(v-for='btn in field.buttons', @click='btn.onclick(model, field)', :class='btn.classes') {{ btn.label }}
 				.hint(v-if='field.hint') {{ field.hint }}
@@ -148,6 +149,10 @@ div
 			// Get type of field 'field-xxx'. It'll be the name of HTML element
 			getFieldType(fieldSchema) {
 				return "field-" + fieldSchema.type;
+			},
+
+            getFieldModelName(field){
+			   return field.model;
 			},
 
 			// Get disabled attr of field

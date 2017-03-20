@@ -1,5 +1,6 @@
 <template lang="pug">
 .wrapper
+	slot(:name='schema.model')
 	input.form-control(
 		:type="schema.inputType", 
 		:value="value",
@@ -31,6 +32,7 @@
 		:step="schema.step",
 		:width="schema.width",
 		:files="schema.files")
+	slot(name="after")
 	span.helper(v-if="schema.inputType === 'color' || schema.inputType === 'range'") {{ value }}
 </template>
 
