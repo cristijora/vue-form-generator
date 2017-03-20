@@ -1,6 +1,6 @@
 <template lang="pug">
-.wrapper
-	slot(:name='schema.model')
+.wrapper.input-group
+	slot(name="before")
 	input.form-control(
 		:type="schema.inputType", 
 		:value="value",

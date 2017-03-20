@@ -16,7 +16,12 @@
         <div v-for="(item, index) in validationErrors" track-by="index" class="alert alert-danger">{{ item.field.label}}: <strong>{{ item.error }}</strong></div>
       </div>
       <vue-form-generator :schema="schema" :model="model" :options="formOptions" :multiple="selected.length > 1" ref="form" :is-new-model="isNewModel" @model-updated="modelUpdated" @validated="onValidated">
-
+        <span slot="firstName-before" class="input-group-addon">
+           <i class="fa fa-search"></i>
+        </span>
+        <span slot="lastName-after" class="input-group-addon">
+           <i class="fa fa-search"></i>
+        </span>
       </vue-form-generator>
     </div>
     <div class="col-md-6">
@@ -150,8 +155,8 @@
 					this.mergeModelValues();
 
 					if (this.isNewModel) {
-						this.rows.push(this.model);
-						this.selectRow(null, this.model, false);
+                        this.rows.push(this.model);
+                        this.selectRow(null, this.model, false);
 					}
 
 				} else {

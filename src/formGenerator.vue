@@ -2,6 +2,7 @@
 div
 	fieldset.vue-form-generator(v-if='schema != null')
 		template(v-for='field in fields')
+
 			.form-group(v-if='fieldVisible(field)', :class='getFieldRowClasses(field)')
 				label
 					| {{ field.label }}
@@ -10,7 +11,10 @@ div
 						.helpText(v-html='field.help')
 				.field-wrap
 					component(:is='getFieldType(field)', :disabled='fieldDisabled(field)', :model='model', :schema.sync='field', @model-updated='modelUpdated', @validated="onFieldValidated")
-						div(slot='firstName') test
+						template(scope="props", slot="before")
+							slot(:name='`${field.model}-before`')
+						template(scope="props", slot="after")
+							slot(:name='`${field.model}-after`')
 					.buttons(v-if='buttonVisibility(field)')
 						button(v-for='btn in field.buttons', @click='btn.onclick(model, field)', :class='btn.classes') {{ btn.label }}
 				.hint(v-if='field.hint') {{ field.hint }}
@@ -150,11 +154,6 @@ div
 			getFieldType(fieldSchema) {
 				return "field-" + fieldSchema.type;
 			},
-
-            getFieldModelName(field){
-			   return field.model;
-			},
-
 			// Get disabled attr of field
 			fieldDisabled(field) {
 				if (isFunction(field.disabled))

@@ -30,7 +30,7 @@ module.exports = {
 			featured: true,
 			required: true,
 			placeholder: "User's first name",
-			styleClasses: "half-width",
+			styleClasses: "half-width input-group",
 			validator: validators.string,
 			onChanged(model, newVal, oldVal, field) {
 				console.log(`Model's name changed from ${oldVal} to ${newVal}. Model:`, model);
@@ -309,7 +309,8 @@ module.exports = {
 			rows: 4,
 			validator: validators.string
 		}, {
-			type: "text",
+			type: "input",
+			inputType: "text",
 			label: "Field with buttons",
 			model: "address.geo",
 			disabled: false,

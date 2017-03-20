@@ -9,7 +9,7 @@
     "build:core": "cross-env FULL_BUNDLE=false webpack --progress --config webpack.build.config.js --define process.env.FULL_BUNDLE=false --output-filename=vfg-core.js",
     "build:full": "cross-env FULL_BUNDLE=true  webpack --progress --config webpack.build.config.js --define process.env.FULL_BUNDLE=true",
     "build": "npm run build:core && npm run build:full",
-    "dev": "webpack-dev-server --config webpack.dev.config.js --inline --hot --content-base dev/",
+    "dev": "webpack-dev-server --config webpack.dev.config.js --inline --hot --watch --content-base dev/",
     "lint": "eslint --ext=.js,.vue src test/unit/specs",
     "coverall": "cat ./test/unit/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "coverage": "npm run test && npm run coverall",
@@ -90,18 +90,17 @@
     "sinon-chai": "2.8.0",
     "stats-webpack-plugin": "0.4.3",
     "style-loader": "0.13.1",
-    "vue": "2.1.10",
+    "vue": "^2.2.4",
     "vue-hot-reload-api": "2.0.8",
     "vue-html-loader": "1.2.3",
     "vue-loader": "10.1.2",
     "vue-multiselect": "2.0.0-beta.13",
     "vue-style-loader": "1.0.0",
-    "vue-template-compiler": "2.1.10",
+    "vue-template-compiler": "^2.2.4",
     "webpack": "1.14.0",
     "webpack-dev-middleware": "1.10.0",
     "webpack-dev-server": "1.16.2",
     "webpack-merge": "0.14.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
