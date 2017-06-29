@@ -4,13 +4,14 @@ import { expect } from "chai";
 import Vue from "vue";
 import VueFormGenerator from "src/index";
 
-Vue.use(VueFormGenerator);
+const FreshVue = Vue.extend()
+FreshVue.use(VueFormGenerator);
 
 let el, vm;
 
 function createFormGenerator(schema = {}, model = null, options, multiple) {
 	let elm = document.createElement("div");
-	vm = new Vue({
+	vm = new FreshVue({
 		// eslint-disable-next-line quotes
 		template: `<vue-form-generator :schema="schema" :model="model" :options="options" :multiple="multiple" ref="form"></vue-form-generator>`,
 		data: {
@@ -57,7 +58,7 @@ describe("VueFormGenerator.vue", () => {
 
 		beforeEach( () => {
 			let elm = document.createElement("div");
-			vm = new Vue({
+			vm = new FreshVue({
 				// eslint-disable-next-line quotes
 				template: `<vue-form-generator :schema="schema" ref="form" tag="section"></vue-form-generator>`,
 				data: {
@@ -778,7 +779,7 @@ describe("VueFormGenerator.vue", () => {
 
 		before( (done) => {
 			let elm = document.createElement("div");
-			vm = new Vue({
+			vm = new FreshVue({
 				// eslint-disable-next-line quotes
 				template: `<vue-form-generator :schema="schema" :model="model" :options="options" :multiple="false" ref="form" @validated="onValidated"></vue-form-generator>`,
 				data: {
@@ -891,7 +892,7 @@ describe("VueFormGenerator.vue", () => {
 
 		before( (done) => {
 			let elm = document.createElement("div");
-			vm = new Vue({
+			vm = new FreshVue({
 				// eslint-disable-next-line quotes
 				template: `<vue-form-generator :schema="schema" :model="model" :options="options" :multiple="false" ref="form" @validated="onValidated"></vue-form-generator>`,
 				data: {
@@ -979,7 +980,7 @@ describe("VueFormGenerator.vue", () => {
 
 		before( (done) => {
 			let elm = document.createElement("div");
-			vm = new Vue({
+			vm = new FreshVue({
 				// eslint-disable-next-line quotes
 				template: `<vue-form-generator :schema="schema" :model="model" :options="options" :multiple="false" ref="form" @validated="onValidated"></vue-form-generator>`,
 				data: {
